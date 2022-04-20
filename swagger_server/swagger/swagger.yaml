@@ -1,0 +1,77 @@
+---
+swagger: "2.0"
+info:
+  description: "Receives a zip file with multiple files inside and returns the files\
+    \ size statistics."
+  version: "1.0.0"
+  title: "HTTP Service - Challenge"
+host: "localhost"
+basePath: "/challenge"
+schemes:
+- "http"
+consumes:
+- "application/zip"
+- "multipart/form-data"
+produces:
+- "application/json"
+paths:
+  /average:
+    post:
+      summary: "Returns the average file size"
+      description: "Returns the average file size"
+      operationId: "average_post"
+      parameters:
+      - name: "zfile"
+        in: "formData"
+        description: "zip file that is a directory"
+        required: true
+        type: "file"
+      responses:
+        "201":
+          description: "Calculated"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /biggest:
+    post:
+      summary: "Returns the biggest file"
+      description: "Returns the biggest file"
+      operationId: "biggest_post"
+      parameters:
+      - name: "zfile"
+        in: "formData"
+        description: "zip file that is a directory"
+        required: false
+        type: "file"
+      responses:
+        "201":
+          description: "Calculated"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /smallest:
+    post:
+      summary: "Returns the smallest file"
+      description: "Returns the smallest file"
+      operationId: "smallest_post"
+      parameters:
+      - name: "zfile"
+        in: "formData"
+        description: "zip file that is a directory"
+        required: false
+        type: "file"
+      responses:
+        "201":
+          description: "Calculated"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /histogram:
+    post:
+      summary: "Returns the histogram of file sizes"
+      description: "Returns the histogram of file sizes"
+      operationId: "histogram_post"
+      parameters:
+      - name: "zfile"
+        in: "formData"
+        description: "zip file that is a directory"
+        required: false
+        type: "file"
+      responses:
+        "201":
+          description: "Calculated"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
