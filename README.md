@@ -61,3 +61,26 @@ docker build -t swagger_server .
 # starting up a container
 docker run -p 8080:8080 swagger_server
 ```
+
+## Requests:
+Note: histogram is returned in base64 and saved as an image in cache/
+
+endpoints:
+- localhost/challenge/<operation>
+  <operation> -> can be average, smallest, biggest and histogram
+
+```
+Request Example 1:
+curl -X 'POST'   'http://192.168.1.64:8080/challenge/average'   -H 'accept: application/json'   -H 'Content-Type: multipart/form-data'   -F 'zfile=@test.zip;type=application/zip'
+    
+Response Example 1:
+["averageSize", {"mean": 8.0}]
+```
+    
+```
+Request Example 2:
+curl -X 'POST'   'http://192.168.1.64:8080/challenge/biggest'   -H 'accept: application/json'   -H 'Content-Type: multipart/form-data'   -F 'zfile=@test.zip;type=application/zip'
+    
+Response Example 2:
+[\"biggestFile\", {\"name\": \"/home/rafael/Downloads/python-pandas-bash-challenge/cache/uploads/test\", \"size\": 20}]
+```
