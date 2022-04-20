@@ -20,7 +20,7 @@ class ProcessData:
     def get_average(self, path):
         df = self.generate_files_data(path)
         size = df['size'].mean()
-        result = json.dumps(['averageSize', {'mean': size}])
+        result = json.dumps(['averageSize', {'mean': str(size)}])
         print("response="+result)
         return result
 
@@ -28,7 +28,7 @@ class ProcessData:
         df = self.generate_files_data(path)
         name = df._get_value(df['size'].idxmax(), 'name')
         size = df['size'].max()
-        result = json.dumps(['biggestFile', {'name': name, 'size': size}])
+        result = json.dumps(['biggestFile', {'name': name, 'size': str(size)}])
         print("response=" + result)
         return result
 
@@ -36,7 +36,7 @@ class ProcessData:
         df = self.generate_files_data(path)
         name = df._get_value(df['size'].idxmin(), 'name')
         size = df['size'].min()
-        result = json.dumps(['smallestFile', {'name': name, 'size': size}])
+        result = json.dumps(['smallestFile', {'name': name, 'size': str(size)}])
         print("response=" + result)
         return result
 
